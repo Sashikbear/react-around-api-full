@@ -1,62 +1,62 @@
-const router = require("express").Router();
-const { celebrate, Joi } = require("celebrate");
-const validator = require("validator");
+const router = require('express').Router();
+const { celebrate, Joi } = require('celebrate');
+const validator = require('validator');
 const {
   getCards,
   createCard,
   deleteCard,
   likeCard,
   dislikeCard,
-} = require("../conrollers/cards");
+} = require('../conrollers/cards');
 
 function validateUrl(string) {
   if (!validator.isURL(string)) {
-    throw new Error("Invalid URL");
+    throw new Error('Invalid URL');
   }
   return string;
 }
 
-router.get("/cards", getCards);
+router.get('/cards', getCards);
 
 router.post(
-  "/cards",
+  '/cards',
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().required().min(2).max(30),
       link: Joi.string().required().custom(validateUrl),
     }),
   }),
-  createCard
+  createCard,
 );
 
 router.delete(
-  "/cards/:cardId",
+  '/cards/:cardId',
   celebrate({
     body: Joi.object().keys({
       _id: Joi.string().hex().length(24),
     }),
   }),
-  deleteCard
+  deleteCard,
 );
 
 router.put(
-  "/cards/:cardId/likes",
+  '/cards/:cardId/likes',
   celebrate({
     params: Joi.object().keys({
       cardId: Joi.string().hex().length(24).required(),
     }),
   }),
-  likeCard
+  likeCard,
 );
 
 router.delete(
-  "/cards/:cardId/likes",
+  '/cards/:cardId/likes',
   celebrate({
     params: Joi.object().keys({
       cardId: Joi.string().hex().length(24).required(),
     }),
   }),
-  dislikeCard
+  dislikeCard,
 );
 
 module.exports = router;
