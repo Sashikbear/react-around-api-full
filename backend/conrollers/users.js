@@ -7,6 +7,7 @@ const User = require('../models/user');
 const NotFoundErr = require('../errors/not-found-err');
 const BadRequestErr = require('../errors/bad-request-err');
 const LoginErr = require('../errors/login-err');
+const EmailConflictErr = require('../errors/email-conflict-err');
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -43,6 +44,7 @@ const createUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') next(new BadRequestErr('Validation failed. Check your request format'));
+      if (err.name === 'MongoError') next(new EmailConflictErr('This email has already been registered'));
       else next(err);
     });
 };
