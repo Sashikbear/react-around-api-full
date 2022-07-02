@@ -1,0 +1,13 @@
+.button_type_delete {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  padding: 0 0 0 20px;
+  width: 18px;
+  height: 19.3px;
+  align-self: center;
+  background: url(../../../images/trashbin.svg) no-repeat center;
+}
+.button_type_like:hover {
+  opacity: 0.5;
+}

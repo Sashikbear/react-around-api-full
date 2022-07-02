@@ -1,0 +1,12 @@
+.profile__image-area {
+  position: relative;
+  margin: 0 30px 0 0;
+  padding: 0;
+  width: 120px;
+  height: 120px;
+}
+@media screen and (max-width: 1150px) {
+  .profile__image-area {
+    margin: 0;
+  }
+}

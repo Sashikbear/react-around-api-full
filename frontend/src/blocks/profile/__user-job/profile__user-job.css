@@ -1,0 +1,21 @@
+.profile__user-job {
+  margin: 0;
+  padding: 16px 0 0 0;
+  width: 100%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #ffffff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media screen and (max-width: 1150px) {
+  .profile__user-job {
+    font-size: 14px;
+    line-height: 1.21;
+    text-align: center;
+    padding: 14px 0 36px 0;
+  }
+}

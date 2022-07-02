@@ -1,0 +1,10 @@
+.header__hamburger-menu {
+  width: 24px;
+  height: 18px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.header__hamburger-menu:hover {
+  opacity: 0.6;
+}

@@ -1,0 +1,13 @@
+.main {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+@media screen and (max-width: 1150px) {
+  .main {
+    width: calc(100% - 38px);
+    margin: 0;
+    padding: 42px 19px 50px 19px;
+  }
+}
+/* fixed incorrect distance between header and profile on 320 viewport */
