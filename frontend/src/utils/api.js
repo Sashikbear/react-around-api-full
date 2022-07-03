@@ -54,7 +54,7 @@ class Api extends Component {
     });
   }
   changeLikeCardStatus(cardId, isLiked) {
-    return this._customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return this._customFetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: `${isLiked ? 'DELETE' : 'PUT'}`,
     });

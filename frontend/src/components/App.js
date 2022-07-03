@@ -75,7 +75,7 @@ function App() {
           if (!res) {
             throw new Error('Something went wrong! ');
           }
-          const userData = { id: res.data._id, email: res.data.email };
+          const userData = { id: res._id, email: res.email };
           setIsLoggedIn(true);
           setUserData(userData);
         })
