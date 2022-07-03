@@ -14,7 +14,7 @@ const usersRouter = require('./routes/users');
 
 const cardsRouter = require('./routes/cards');
 
-const { createUser, login } = require('./conrollers/users');
+const { createUser, login } = require('./controllers/users');
 
 const auth = require('./middleware/auth');
 

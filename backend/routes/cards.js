@@ -7,7 +7,7 @@ const {
   deleteCard,
   likeCard,
   dislikeCard,
-} = require('../conrollers/cards');
+} = require('../controllers/cards');
 
 function validateUrl(string) {
   if (!validator.isURL(string)) {

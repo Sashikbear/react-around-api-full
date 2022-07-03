@@ -6,7 +6,7 @@ const {
   getCurrentUser,
   updateUser,
   updateUserAvatar,
-} = require('../conrollers/users');
+} = require('../controllers/users');
 
 function validateUrl(string) {
   if (!validator.isURL(string)) {
