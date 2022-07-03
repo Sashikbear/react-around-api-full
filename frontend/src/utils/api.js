@@ -67,6 +67,7 @@ class Api extends Component {
 const api = new Api({
   baseUrl: 'https://api.alexandra.gritsenko.students.nomoreparties.sbs',
   headers: {
+    Accept: "application/json",
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
   },

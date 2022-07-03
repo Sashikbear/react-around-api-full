@@ -68,7 +68,6 @@ function App() {
   // check token and navigate to content on success
   function checkToken() {
     const jwt = localStorage.getItem('jwt');
-
     if (jwt) {
       auth
         .getContent(jwt)
