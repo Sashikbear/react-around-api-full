@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const validator = require('validator');
 const { celebrate, Joi } = require('celebrate');
+const auth = require('../middleware/auth');
 const {
   getUsers,
   getCurrentUser,
@@ -15,8 +16,8 @@ function validateUrl(string) {
   return string;
 }
 
-router.get('/users', getUsers);
-router.get('/users/me', getCurrentUser);
+router.get('/users', auth, getUsers);
+router.get('/users/me', auth, getCurrentUser);
 router.patch(
   '/users/me',
   celebrate({

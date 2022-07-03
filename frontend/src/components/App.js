@@ -96,6 +96,31 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      api
+        .getInitialCards()
+        .then((cardsData) => {
+          setCards(cardsData);
+        })
+        .catch((err) => {
+          console.log(`Error: ${err}`);
+        });
+   
+      api
+        .getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.log(`Error: ${err}`);
+        });
+    } }
+    
+  , [isLoggedIn])
+
+
+
   // sign up
 
   function handleRegister(email, password) {
@@ -199,28 +224,6 @@ function App() {
         setIsLoading(false);
       });
   }
-
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cardsData) => {
-        setCards(cardsData);
-      })
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-      });
-  }, []);
-
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-      });
-  }, []);
 
   useEffect(() => {
     const handleClickClose = (e) => {

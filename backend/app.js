@@ -32,17 +32,15 @@ app.options('*', cors());
 
 app.use(helmet());
 
-app.use(auth);
-
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.use('/', usersRouter);
+app.use('/', auth, usersRouter);
 
-app.use('/', cardsRouter);
+app.use('/', auth,  cardsRouter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
