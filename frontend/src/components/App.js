@@ -167,10 +167,9 @@ function App() {
         if (!res) {
           throw new Error('Something went wrong!');
         }
-  localStorage.setItem('jwt', res.token);
         api.updateToken(res.token);
         setIsLoggedIn(true);
-        setUserData(res);
+        setUserData(res.user);
       })
 
       .then(() => {

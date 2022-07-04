@@ -60,7 +60,7 @@ class Api extends Component {
     });
   }
   updateToken(token) {
-    this._headers.authorization = `Bearer ${token}`;
+    this._headers.Authorization = `Bearer ${token}`;
   }
 }
 
