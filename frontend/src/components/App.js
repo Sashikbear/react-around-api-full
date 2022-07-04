@@ -63,7 +63,7 @@ function App() {
 
   useEffect(() => {
     checkToken();
-  }, []);
+  }, [isLoggedIn, navigate]);
 
   // check token and navigate to content on success
   function checkToken() {
@@ -101,6 +101,7 @@ function App() {
       api
         .getInitialCards()
         .then((cardsData) => {
+          cardsData.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
           setCards(cardsData);
         })
         .catch((err) => {
@@ -117,7 +118,7 @@ function App() {
         });
     } }
     
-  , [isLoggedIn])
+  , [ navigate])
 
 
 
@@ -153,6 +154,8 @@ function App() {
 
   // sign in
 
+
+
   function handleLogin(email, password) {
     if (!email || !password) {
       return;
@@ -164,9 +167,10 @@ function App() {
         if (!res) {
           throw new Error('Something went wrong!');
         }
+  localStorage.setItem('jwt', res.token);
         api.updateToken(res.token);
         setIsLoggedIn(true);
-        setUserData(userData);
+        setUserData(res);
       })
 
       .then(() => {
