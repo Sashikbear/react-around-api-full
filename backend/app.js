@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
-const { celebrate, Joi, errors, isCelebrateError } = require('celebrate');
+const {
+  celebrate, Joi, errors,
+} = require('celebrate');
 
 const cors = require('cors');
 
@@ -85,13 +87,9 @@ app.use((err, req, res, next) => {
   if (err.name === 'MongoError' || err.code === 11000) {
     throw new EmailConflictErr('An error occurred on the database');
   }
-  else if (isCelebrateError(err)) {
-    statusCode = 400;
-    message = 'Invalid input. Validation error.';
-  }
- else  {res.status(err.statusCode).send({
+  res.status(err.statusCode).send({
     message: err.statusCode === 500 ? 'An error occurred on the server' : err.message,
-  });}
+  });
   next();
 });
 
