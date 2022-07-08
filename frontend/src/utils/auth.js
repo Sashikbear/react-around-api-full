@@ -1,6 +1,8 @@
 const BASE_URL = 'https://api.alexandra.gritsenko.students.nomoreparties.sbs';
 function checkResponse(res) {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  return res.ok ? res.json() : res.text().then(text => {
+    throw new Error(text)
+});
 }
 
 export const register = (email, password) => {
@@ -27,7 +29,6 @@ export const authorize = (email, password) => {
     .then((data) => {
       if (data.token) {
         localStorage.setItem('jwt', data.token);
-        console.log(data)
         return data;
       }
     });

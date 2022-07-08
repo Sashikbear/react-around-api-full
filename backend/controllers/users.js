@@ -44,7 +44,7 @@ const createUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') next(new BadRequestErr('Validation failed. Check your request format'));
-      if (err.name === 'MongoError') next(new EmailConflictErr('This email has already been registered'));
+      else if (err.code === 11000 || err.name === 'MongoError') next(new EmailConflictErr('This email has already been registered'));
       else next(err);
     });
 };
@@ -90,6 +90,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
+      console.log('Hi');
       if (!user) {
         throw new NotFoundErr('User not found');
       }

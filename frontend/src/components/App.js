@@ -84,14 +84,9 @@ function App() {
         })
         .catch((err) => {
           console.log(`Error: ${err}`);
-          if (constants.ERROR_CODE(err) === '401') {
-            throw new Error('The provided token is invalid');
-          }
-          if (constants.ERROR_CODE(err) === '400') {
             throw new Error(
               'Token not provided or provided in the wrong format'
             );
-          }
         });
     }
   }
@@ -144,11 +139,10 @@ function App() {
       })
       .catch((err) => {
         console.log(`Error: ${err}`);
-        if (constants.ERROR_CODE(err) === '400') {
           setIsInfoTooltipPopupOpen(true);
           setIsSignUpSuccessful(false);
           throw new Error('One of the fields was filled in incorrectly ');
-        }
+        
       });
   }
 
@@ -169,7 +163,7 @@ function App() {
         }
         api.updateToken(res.token);
         setIsLoggedIn(true);
-        setUserData(res.user);
+        setUserData(res);
       })
 
       .then(() => {
@@ -177,12 +171,7 @@ function App() {
       })
       .catch((err) => {
         console.log(`Error: ${err}`);
-        if (constants.ERROR_CODE(err) === '401') {
-          throw new Error('The user with the specified email not found ');
-        }
-        if (constants.ERROR_CODE(err) === '400') {
-          throw new Error('One or more of the fields were not provided');
-        }
+        throw new Error('One of the fields was filled in incorrectly');
       });
   }
 
@@ -306,9 +295,9 @@ function App() {
       })
       .catch((err) => {
         console.log(`Error: ${err}`);
-        if (constants.ERROR_CODE(err) === '400') {
+      
           throw new Error('One of the fields was filled in incorrectly ');
-        }
+
       });
   }
   function handleUpdateAvatar(currentUser) {
@@ -324,9 +313,7 @@ function App() {
       })
       .catch((err) => {
         console.log(`Error: ${err}`);
-        if (constants.ERROR_CODE(err) === '400') {
-          throw new Error('Url not provided or provided in the wrong format');
-        }
+          throw new Error('Url not provided or provided in the wrong format'); 
       });
   }
   function handleAddPlaceSubmit(newCard) {
@@ -343,9 +330,9 @@ function App() {
       })
       .catch((err) => {
         console.log(`Error: ${err}`);
-        if (constants.ERROR_CODE(err) === '400') {
+     
           throw new Error('One of the fields was filled in incorrectly ');
-        }
+        
       });
   }
 

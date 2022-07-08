@@ -8,7 +8,7 @@ class Api extends Component {
   }
   _customFetch = (url, headers) => {
     return fetch(url, headers).then((res) =>
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`)
     );
   };
   getUserInfo() {

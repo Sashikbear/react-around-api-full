@@ -20,6 +20,8 @@ const auth = require('./middleware/auth');
 
 const EmailConflictErr = require('./errors/email-conflict-err');
 
+const NotFoundErr = require('./errors/not-found-err');
+
 require('dotenv').config();
 
 const { requestLogger, errorLogger } = require('./middleware/logger');
@@ -71,8 +73,8 @@ app.use('/', auth, usersRouter);
 
 app.use('/', auth, cardsRouter);
 
-app.get('*', (req, res) => {
-  res.status(404).send({ message: 'Requested resource not found' });
+app.get('*', () => {
+  throw new NotFoundErr('Requested resource not found');
 });
 
 app.use(errorLogger);
